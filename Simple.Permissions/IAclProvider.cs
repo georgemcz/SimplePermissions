@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace Simple.Permissions
+﻿namespace Simple.Permissions
 {
     /// <summary>
     /// Provides a current ACLs.

@@ -87,7 +87,7 @@ namespace Simple.Permissions
                 for (int index = 0; index < trusteeLevel.Length; index++)
                 {
                     var trusteeGroup = trusteeLevel[index];
-                    // for every node in the same group we started everytime from the beginning
+                    // for every node in the same group we started every time from the beginning
                     Right localResult = result;
                     Right localAccumulator = accumulator;
 
@@ -107,7 +107,7 @@ namespace Simple.Permissions
                     groupResult = groupResult | localResult;
 
                     // we need to remove bits that were allowed by previous groups on the same level
-                    // also all denied bits are summed to always remove denied bits once ther're set
+                    // also all denied bits are summed to always remove denied bits once they're set
                     denied = denied | (localAccumulator & ~localResult);
                     groupResult = groupResult & ~denied; // remove denied bits from group grant
                 }

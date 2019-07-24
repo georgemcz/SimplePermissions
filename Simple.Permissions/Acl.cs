@@ -86,7 +86,7 @@ namespace Simple.Permissions
                     existingAdd.PermissionMask |= permission.PermissionMask;
                 }
 
-                RemoveEmptyEntriesAndUpdateOuputs();
+                RemoveEmptyEntriesAndUpdateOutputs();
             }
         }
 
@@ -112,7 +112,7 @@ namespace Simple.Permissions
                     existingAdd.PermissionMask |= permission.PermissionMask;
                 }
 
-                RemoveEmptyEntriesAndUpdateOuputs();
+                RemoveEmptyEntriesAndUpdateOutputs();
             }
         }
 
@@ -138,7 +138,7 @@ namespace Simple.Permissions
                     existingAdd.PermissionMask |= permission.PermissionMask;
                 }
 
-                RemoveEmptyEntriesAndUpdateOuputs();
+                RemoveEmptyEntriesAndUpdateOutputs();
             }
         }
 
@@ -164,7 +164,7 @@ namespace Simple.Permissions
                     existingAdd.PermissionMask |= permission.PermissionMask;
                 }
 
-                RemoveEmptyEntriesAndUpdateOuputs();
+                RemoveEmptyEntriesAndUpdateOutputs();
             }
         }
 
@@ -198,19 +198,19 @@ namespace Simple.Permissions
                 foreach (var allow in allows)
                     allow.PermissionMask &= ~permission;
 
-                RemoveEmptyEntriesAndUpdateOuputs();
+                RemoveEmptyEntriesAndUpdateOutputs();
             }
         }
 
         /// <summary>
         /// Removes the empty entries.
         /// </summary>
-        private void RemoveEmptyEntriesAndUpdateOuputs()
+        private void RemoveEmptyEntriesAndUpdateOutputs()
         {
             lock (_allowPermissions)
             lock (_denyPermissions)
             {
-                // reduce chaoss by removing empty entries
+                // reduce chaos by removing empty entries
                 _denyPermissions.RemoveAll(p => p.PermissionMask == Right.None);
                 _allowPermissions.RemoveAll(p => p.PermissionMask == Right.None);
 

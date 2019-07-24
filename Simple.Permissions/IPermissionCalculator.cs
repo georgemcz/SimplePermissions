@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Simple.Permissions
+﻿namespace Simple.Permissions
 {
     /// <summary>
     /// Object used for calculating the available permission set for protected object and trustee.

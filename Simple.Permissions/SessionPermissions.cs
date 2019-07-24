@@ -72,8 +72,7 @@ namespace Simple.Permissions
         /// </returns>
         public Right GetOrPeekPermissions(TIdentity objectId)
         {
-            Right permissions;
-            return _cachedPermissions.TryGetValue(objectId, out permissions)
+            return _cachedPermissions.TryGetValue(objectId, out var permissions)
                 ? permissions // return what is cached
                 : PeekAccess(objectId); // peek the permissions only otherwise
         }

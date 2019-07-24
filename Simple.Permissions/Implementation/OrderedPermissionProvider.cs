@@ -40,9 +40,9 @@ namespace Simple.Permissions
             // Then it goes like that: (gr1:denied, gr2:denied, gr1:allowed, gr2:allowed)
             // it also ignores all non-inherited permissions for levels other than 0 = direct me
             return membership
-                .Select(dist => dist.Select(s => _aclProvider.GetById(s.Id)).Where(diacl => diacl != null).ToArray())
-                .SelectMany((distAcl, i) => Enumerable.SelectMany(distAcl, acl => Enumerable.Where(acl.DeniedPermissions, a => a.IsInherited || i == 0)) // take denied everywhere and denied noninherited only on first level
-                    .Concat(Enumerable.SelectMany(distAcl, acl => Enumerable.Where(acl.AllowedPermissions, a => a.IsInherited || i == 0)))); // take allowed everywhere and allowed noninherited only on first level
+                .Select(dist => dist.Select(s => _aclProvider.GetById(s.Id)).Where(distAcl => distAcl != null).ToArray())
+                .SelectMany((distAcl, i) => distAcl.SelectMany(acl => acl.DeniedPermissions.Where(a => a.IsInherited || i == 0)) // take denied everywhere and denied non-inherited only on first level
+                    .Concat(distAcl.SelectMany(acl => acl.AllowedPermissions.Where(a => a.IsInherited || i == 0)))); // take allowed everywhere and allowed non-inherited only on first level
         }
     }
 }
